@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+app:
+  cors:
+    allowed-origins: http://localhost:3000
+
 spring:
   cloud:
     gateway:
@@ -26,11 +30,3 @@ spring:
             - RewritePath=/api/products/(?<segment>.*), /${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
-
-# Custom properties
-app:
-  name: API Gateway Service
-  version: 1.0.0
-  timeout:
-    connect: 5000
-    read: 10000
