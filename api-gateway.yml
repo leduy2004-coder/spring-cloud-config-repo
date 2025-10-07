@@ -4,6 +4,11 @@ server:
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
+
       routes:
         - id: user-service
           uri: lb://user-service
@@ -11,6 +16,7 @@ spring:
             - Path=/api/users/**
           filters:
             - RewritePath=/api/users/(?<segment>.*), /${segment}
+            - AddRequestHeader=X-Gateway, API-Gateway
 
         - id: product-service
           uri: lb://product-service
@@ -18,3 +24,13 @@ spring:
             - Path=/api/products/**
           filters:
             - RewritePath=/api/products/(?<segment>.*), /${segment}
+            - AddRequestHeader=X-Gateway, API-Gateway
+
+
+# Custom properties
+app:
+  name: API Gateway Service
+  version: 1.0.0
+  timeout:
+    connect: 5000
+    read: 10000
