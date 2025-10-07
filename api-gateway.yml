@@ -2,10 +2,15 @@ server:
   port: 8080
 
 app:
+  api-prefix: /api/v1
+  web-client-url: lb://auth-service
   cors:
     allowed-origins: http://localhost:3000
 
 spring:
+  application:
+    name: api-gateway
+
   cloud:
     gateway:
       discovery:
@@ -14,19 +19,34 @@ spring:
           lower-case-service-id: true
 
       routes:
+        # AUTH-SERVICE
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/api/v1/auth/**
+          filters:
+            - RewritePath=/api/v1/(?<segment>.*), /${segment}
+            - AddRequestHeader=X-Gateway, API-Gateway
+
+        # USER-SERVICE
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/users/**
+            - Path=/api/v1/users/**
           filters:
-            - RewritePath=/api/users/(?<segment>.*), /${segment}
+            - RewritePath=/api/v1/users/(?<segment>.*), /${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
+        # PRODUCT-SERVICE
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/api/products/**
+            - Path=/api/v1/products/**
           filters:
-            - RewritePath=/api/products/(?<segment>.*), /${segment}
+            - RewritePath=/api/v1/products/(?<segment>.*), /${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
