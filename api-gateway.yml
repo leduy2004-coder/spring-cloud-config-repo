@@ -6,7 +6,7 @@ app:
   web-client-url: lb://auth-service
   cors:
     allowed-origins: http://localhost:3000
-
+spring:
   cloud:
     gateway:
       discovery:
