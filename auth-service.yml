@@ -11,7 +11,7 @@ spring:
 
   data:
     mongodb:
-      uri: mongodb://root:abc123!%40%23@localhost:27017/auth-service?authSource=admin
+      uri: mongodb://root:abc123456@localhost:27017/auth-service?authSource=admin
     redis:
       host: localhost
       port: 6379
