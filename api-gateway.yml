@@ -9,7 +9,10 @@ app:
 
   cloud:
     gateway:
-
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
       routes:
         # AUTH-SERVICE
         - id: auth-service
@@ -17,7 +20,7 @@ app:
           predicates:
             - Path=/api/v1/auth/**
           filters:
-            - RewritePath=/api/v1/(?<segment>.*), /${segment}
+            - RewritePath=/api/v1/auth/(?<segment>.*), /auth/${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
         # USER-SERVICE
