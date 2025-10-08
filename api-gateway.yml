@@ -1,7 +1,6 @@
 server:
   port: 8080
-  servlet:
-   context-path: /auth
+
 app:
   api-prefix: /api/v1
   web-client-url: lb://auth-service
@@ -20,7 +19,7 @@ spring:
           predicates:
             - Path=/api/v1/auth/**
           filters:
-            - RewritePath=/api/v1/auth/(?<segment>.*), /auth/${segment}
+            - RewritePath=/api/v1/auth/(?<segment>.*), /${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
         # USER-SERVICE
