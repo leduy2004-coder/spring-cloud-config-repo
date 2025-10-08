@@ -7,16 +7,8 @@ app:
   cors:
     allowed-origins: http://localhost:3000
 
-spring:
-  application:
-    name: api-gateway
-
   cloud:
     gateway:
-      discovery:
-        locator:
-          enabled: true
-          lower-case-service-id: true
 
       routes:
         # AUTH-SERVICE
