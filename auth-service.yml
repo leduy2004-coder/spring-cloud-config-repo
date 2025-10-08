@@ -15,7 +15,7 @@ spring:
     mongodb:
       uri: mongodb://root:abc123!%40%23@localhost:27017/auth-service?authSource=admin
     redis:
-      host: redis
+      host: localhost
       port: 6379
       password: myredispass
       repositories:
