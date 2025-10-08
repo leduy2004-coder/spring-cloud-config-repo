@@ -46,7 +46,3 @@ spring:
             - RewritePath=/api/v1/products/(?<segment>.*), /${segment}
             - AddRequestHeader=X-Gateway, API-Gateway
 
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
