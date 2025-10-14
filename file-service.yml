@@ -1,0 +1,22 @@
+server:
+  port: 8083
+  servlet:
+    context-path: /file
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 40MB
+      max-request-size: 40MB
+  cache:
+    type: redis
+
+  data:
+    mongodb:
+      uri: mongodb://root:abc123456@localhost:27017/file-service?authSource=admin
+
+
+cloudinary:
+  cloud_name: dyzx3s8h1
+  api_key: 813347884584893
+  api_secret: rClk01yyIVkTNEH9SRbU4IDfgMM
