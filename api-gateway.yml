@@ -23,10 +23,10 @@ spring:
             - AddRequestHeader=X-Gateway, API-Gateway
 
         # USER-SERVICE
-        - id: user-service
-          uri: lb://user-service
+        - id: file-service
+          uri: lb://file-service
           predicates:
-            - Path=/api/v1/users/**
+            - Path=/api/v1/file/**
           filters:
             - StripPrefix=2
             - AddRequestHeader=X-Gateway, API-Gateway
@@ -35,9 +35,9 @@ spring:
         - id: product-service
           uri: lb://product-service
           predicates:
-            - Path=/api/v1/products/**
+            - Path=/api/v1/product/**
           filters:
-            - RewritePath=/api/v1/products/(?<segment>.*), /${segment}
+            - StripPrefix=2
             - AddRequestHeader=X-Gateway, API-Gateway
 logging:
   level:
