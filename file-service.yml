@@ -14,8 +14,8 @@ spring:
     mongodb:
       uri: mongodb://root:abc123456@localhost:27017/file-service?authSource=admin
 
-
-cloudinary:
-  cloud_name: dyzx3s8h1
-  api_key: 813347884584893
-  api_secret: rClk01yyIVkTNEH9SRbU4IDfgMM
+  minio:
+    endpoint: http://localhost:9000
+    access-key: admin
+    secret-key: admin@2024
+    bucket-name: resources
