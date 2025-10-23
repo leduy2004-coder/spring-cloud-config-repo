@@ -1,7 +1,11 @@
 server:
   port: 8083
 
-
+minio:
+  endpoint: http://localhost:9000
+  access-key: admin
+  secret-key: admin@2024
+  bucket-name: resources
 spring:
   servlet:
     multipart:
@@ -14,8 +18,3 @@ spring:
     mongodb:
       uri: mongodb://root:abc123456@localhost:27017/file-service?authSource=admin
 
-  minio:
-    endpoint: http://localhost:9000
-    access-key: admin
-    secret-key: admin@2024
-    bucket-name: resources
